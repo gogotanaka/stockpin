@@ -5,5 +5,6 @@ class WelcomeController < ApplicationController
       return 
     end
     @user = User.new
+
   end
 end

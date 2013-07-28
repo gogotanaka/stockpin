@@ -15,6 +15,9 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
+    unless @user
+      redirect_to root_path
+    end
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @user }
@@ -79,5 +82,9 @@ class UsersController < ApplicationController
       format.html { redirect_to users_url }
       format.json { head :no_content }
     end
+  end
+
+  def profile
+    @user = User.find(params[:id])
   end
 end
