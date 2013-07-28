@@ -1,12 +1,99 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>Username:</b>
-  <%= @user.email %>
-</p>
-<%= link_to "Sign out", destroy_user_session_path, method: :delete %>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
-
-<%= Stock.all %><%= User.all %>
+<div class="stock_inner">
+  stock
+  <% Stock.limit(5).each do |stock| %>
+  	<%= image_tag(stock.chart)%><br>
+  	<%= link_to stock.name, stock_path(stock) %>:<%= image_tag("star.jpeg")%><%= link_to "お気に入り登録", register_stock_path(id: stock.id) %><br>
+    <table class="">
+      <tr><td>現在株価</td><td class="font_blod stock_table_td_align"><%= stock.price %></td></tr>
+      <tr><td>前日比</td><td class="stock_table_td_align"><%= stock.code %></td></tr>
+      <tr><td>出来高</td><td class="stock_table_td_align"><%= stock.volume %></td></tr>
+      <% stock.comments.each do |comment| %>
+        <div class="comment clearfix">
+          <div class="comment_image">
+            <%= image_tag(comment.user.image_url(:thumb),{width: "30px", height: "30px"}) if comment.user.image? %>
+          </div>
+          <div class="comment_contents">
+            <p class="comment_username">
+              <%= link_to comment.user.email, profile_user_path(comment.user) %>
+            </p>
+            <p class="contents">
+              <%= comment.contents %>
+            </p>
+              <p class="GrayColor time_info">
+                <%= time_ago_in_words(comment.created_at) %>前&nbsp;
+              </p>
+          </div>
+        </div>
+      <% end %>
+    </table>
+    <% @comment = Comment.new %>
+    <%= form_for(@comment) do |f| %>
+      <div class="field">
+        <%= f.label :contents %><br />
+        <%= f.text_field :contents %>
+      </div>
+      <%= f.hidden_field :stock_id, value: stock.id %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+      <div class="actions">
+        <%= f.submit 'コメント', disable_with: 'コメント中' %>
+      </div>
+    <% end %>
+  <% end %>
+  <p>
+    <b>Username:</b>
+    <%= current_user.email %>
+  </p>
+  <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+  <%= link_to 'Edit', edit_user_path(@user) %> |
+  <%= link_to 'Back', users_path %>
+  <%= @user.stocks %>
+</div>
+<div class="follow_inner">
+  <% Stock.limit(10).each do |stock| %>
+    <%= image_tag(stock.chart)%><br>
+    <%= link_to stock.name, stock_path(stock) %>:<%= image_tag("star.jpeg")%><%= link_to "お気に入り登録", register_stock_path(id: stock.id) %><br>
+    <table class="">
+      <tr><td>現在株価</td><td class="font_blod stock_table_td_align"><%= stock.price %></td></tr>
+      <tr><td>前日比</td><td class="stock_table_td_align"><%= stock.code %></td></tr>
+      <tr><td>出来高</td><td class="stock_table_td_align"><%= stock.volume %></td></tr>
+      <% stock.comments.each do |comment| %>
+        <div class="comment clearfix">
+          <div class="comment_image">
+            <%= image_tag(comment.user.image_url(:thumb),{width: "30px", height: "30px"}) if comment.user.image? %>
+          </div>
+          <div class="comment_contents">
+            <p class="comment_username">
+              <%= link_to comment.user.email, profile_user_path(comment.user) %>
+            </p>
+            <p class="contents">
+              <%= comment.contents %>
+            </p>
+              <p class="GrayColor time_info">
+                <%= time_ago_in_words(comment.created_at) %>前&nbsp;
+              </p>
+          </div>
+        </div>
+      <% end %>
+    </table>
+    <% @comment = Comment.new %>
+    <%= form_for(@comment) do |f| %>
+      <div class="field">
+        <%= f.label :contents %><br />
+        <%= f.text_field :contents %>
+      </div>
+      <%= f.hidden_field :stock_id, value: stock.id %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+      <div class="actions">
+        <%= f.submit 'コメント', disable_with: 'コメント中' %>
+      </div>
+    <% end %>
+  <% end %>
+  <p>
+    <b>Username:</b>
+    <%= current_user.email %>
+  </p>
+  <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+  <%= link_to 'Edit', edit_user_path(@user) %> |
+  <%= link_to 'Back', users_path %>
+  <%= @user.stocks %>
+</div>

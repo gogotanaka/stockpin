@@ -1,12 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Masturbate</title>
+  <title>LoginOnly</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
-	<body>
-		<%= yield %>
-	</body>
+<body>
+	<% if current_user %>
+		<%= render partial: 'users/timeline_header', locals: {user: current_user} %>
+	<% else %>
+		<%= render partial: 'welcome/welcome_header' %>
+	<% end %>
+	<div id="container"> 
+		<div class="inside">
+			<%= yield %>
+		</div>
+	<div>
+
+</body>
 </html>

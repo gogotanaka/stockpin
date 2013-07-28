@@ -1,0 +1,16 @@
+<div id="welcome_header" class="clearfix">
+  <div id="welcome_header_inner">
+    <div id="logo">
+      <%= link_to "STOCK PIN", "/welcome/index", :class => "serif" %>
+    </div>
+    <ul>
+      <%= form_for(:user, :url => session_path(:user)) do |f| %>
+        <li>
+          <%= f.email_field :email, placeholder: "ユーザネーム", class: "text_input login_form" %>&nbsp;&nbsp;
+          <%= f.password_field :password, placeholder: "パスワード", :class=>"text_input login_form" %>
+          <%= f.submit "ログイン", :class=>"login_button" %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

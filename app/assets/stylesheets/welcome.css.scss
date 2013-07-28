@@ -1,3 +1,96 @@
 // Place all the styles related to the welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+#content {
+	padding: 40px 0;
+	#left {
+		width: 500px;
+		float: left;
+		
+		#vision {
+			font-size: 27px;
+			font-weight: bold;
+			text-shadow: 0 1px 1px rgba(255,255,255,0.7);
+		}
+	}
+	#right {
+		width: 350px;
+		float: left;
+		margin-left: 50px;
+		
+		#topic {
+			margin-top: 20px;
+			letter-spacing: 0.1em;
+			font-weight: bold;
+			font-size: 18px;
+			text-shadow: 0 1px 1px rgba(255,255,255,0.7);
+		}
+		#detail {
+			margin: 6px 0 0 0;
+			padding-bottom: 12px;
+			border-bottom: 1px solid #999999;
+			font-size: 14px;
+		}
+		#reg_form_container {
+			border-top: 1px solid #FFFFFF;
+			padding: 10px 0;
+			border-bottom: 1px solid #999999;
+			
+			.field {
+				margin: 10px 0;
+			}
+			.text_input {
+				border: 1px solid #CCCCCC;
+  				box-shadow: 0 1px 0 #EEEEEE inset, 0 1px 0 #FFFFFF;
+  				padding: 0 5px;
+  		
+  				&:focus {
+  					border: 1px solid #56B4EF;
+  					box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) inset, 0 0 8px rgba(82, 168, 236, 0.6);
+  				}
+			}
+			.name_form {
+				width: 130px;
+  				height: 30px;
+			}
+			.mail_form {
+				width: 280px;
+  				height: 30px;
+			}
+			.pass_form {
+				width: 130px;
+  				height: 30px;
+			}
+			#reg_form	{
+				width: 294px;
+				margin: auto;
+			}
+			.reg_button_wrap {
+				text-align: center;
+				margin-bottom: 10px;
+			}
+			.reg_button {
+				background-color: rgb(74,173,172);
+				background: -webkit-gradient(linear, center top, center bottom, from(rgb(74,173,172)), to(rgb(1,120,130)));
+  				background: -moz-linear-gradient(rgb(74,173,172), rgb(1,120,130));
+  				border: 1px solid rgb(84,121,121);
+  				color: #FFFFFF;
+  				text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  				cursor: pointer;
+  				border-radius: 2px;
+  				padding: 7px 24px;
+  				font-weight: bold;
+  				font-size: 14px;
+  				
+  				&:hover {
+  					background-color: rgb(104,203,202);
+					background: -webkit-gradient(linear, center top, center bottom, from(rgb(104,203,202)), to(rgb(31,150,160)));
+  					background: -moz-linear-gradient(rgb(104,203,202), rgb(31,150,160));
+  					color: #FFFFFF;
+  				}
+			}
+		}
+	}
+}	
