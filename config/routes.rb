@@ -1,12 +1,18 @@
 Masturbate::Application.routes.draw do
-  resources :stocks
-
-
   devise_for :users, :controllers => { :registrations => "registrations" }
 
-  resources :users
-
-
+  resources :users do
+    member do
+      get :profile
+    end
+  end
+  resources :comments
+  resources :boards
+  resources :stocks do
+    member do
+      get :register
+    end
+  end
   get "welcome/index"
 
   # The priority is based upon order of creation:

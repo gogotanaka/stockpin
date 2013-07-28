@@ -46,7 +46,7 @@
   <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
   <%= link_to 'Edit', edit_user_path(@user) %> |
   <%= link_to 'Back', users_path %>
-  <%= @user.stocks %>
+
 </div>
 <div class="follow_inner">
   <% Stock.limit(10).each do |stock| %>
@@ -95,5 +95,5 @@
   <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
   <%= link_to 'Edit', edit_user_path(@user) %> |
   <%= link_to 'Back', users_path %>
-  <%= @user.stocks %>
+
 </div>

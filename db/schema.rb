@@ -11,7 +11,29 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130620064624) do
+ActiveRecord::Schema.define(:version => 20130709022613) do
+
+  create_table "boards", :force => true do |t|
+    t.string   "title"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "comments", :force => true do |t|
+    t.string   "contents"
+    t.integer  "user_id"
+    t.integer  "stock_id"
+    t.integer  "board_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "stock_user_relations", :force => true do |t|
+    t.integer  "stock_id"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "stocks", :force => true do |t|
     t.integer  "code"
@@ -25,9 +47,14 @@ ActiveRecord::Schema.define(:version => 20130620064624) do
     t.string   "high"
     t.string   "low"
     t.string   "chart"
+    t.text     "twitter"
+    t.text     "yahoo"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
   end
+
+  add_index "stocks", ["code"], :name => "index_stocks_on_code"
+  add_index "stocks", ["name"], :name => "index_stocks_on_name"
 
   create_table "users", :force => true do |t|
     t.string   "username"
@@ -43,6 +70,7 @@ ActiveRecord::Schema.define(:version => 20130620064624) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "image"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
